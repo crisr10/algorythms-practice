@@ -49,15 +49,6 @@
 // ---------------------------------------------------------------------
 // -------------------------- SOLUTION 3 -------------------------------
 
-let array = [1,2,3,4];
-let chunked = [];
-chunked.push(array.slice(0,2));
-
-chunked.push(array.slice(2,4));
-
-console.log(chunked);
-console.log(array);
-
 let chunk = (array, size) => {
 	const chunked = [];
 	let index = 0;
@@ -65,9 +56,13 @@ let chunk = (array, size) => {
 		chunked.push(array.slice(index, index + size))
 		index += size;
 	}
-
 	return chunked;
 }
+
+// In this solution we use the slice method. `The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.` 
+
+// Every time the slice() portion is sent to the chunked array, the size is added to the index, changing the parameters of the slice after every loop.
+
 
 
 // ---------------------------------------------------------------------
