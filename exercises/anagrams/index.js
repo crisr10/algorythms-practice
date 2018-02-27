@@ -50,35 +50,52 @@
 
 // ---------------------------------------------------------------------
 // ---------------------------- SOLUTION 2 --------------------------
-function anagrams(strA, strB) {
-  const strAMap = buildCharMap(strA);
-  const strBMap = buildCharMap(strB);
+// function anagrams(strA, strB) {
+//   const strAMap = buildCharMap(strA);
+//   const strBMap = buildCharMap(strB);
 
-  if (Object.keys(strAMap).length !== Object.keys(strBMap).length) {
-    return false;
-  }
+//   if (Object.keys(strAMap).length !== Object.keys(strBMap).length) {
+//     return false;
+//   }
 
-  for (let char in strAMap) {
-    if (strAMap[char] !== strBMap[char]) {
-      return false;
-    }
-  }
-  return true;
-}
+//   for (let char in strAMap) {
+//     if (strAMap[char] !== strBMap[char]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
-function buildCharMap(str) {
-  let mapChars = {}
-  for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
-    mapChars[char] = mapChars[char] + 1 || 1
-  }
-  return mapChars;
-}
+// function buildCharMap(str) {
+//   let mapChars = {}
+//   for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+//     mapChars[char] = mapChars[char] + 1 || 1
+//   }
+//   return mapChars;
+// }
 
 // Cleaned up solution from the first one, more organized, and less but still readable code
 // 
 // ---------------------------------------------------------------------
+// ---------------------------- SOLUTION 3 --------------------------
 
+// This third solution works with the sort method, we can split() both strings and then compare both to see if they're anagrams.
+
+function anagrams(stringA, stringB) {
+  const strA = cleanUpString(stringA)
+  const strB = cleanUpString(stringB)
+
+  return strA === strB;
+}
+
+function cleanUpString (str) {
+  return str.replace(/[^\w]/g, '')
+    .toLowerCase()
+    .split('')
+    .sort()
+    .join('');
+}
+
+// Create helper function to "Clean up" the strings. This function gets rid of all the unwanted spaces and punctuation characters, and also makes every character lower case to have clean strings to compare to.
 
 module.exports = anagrams;
-
-//
