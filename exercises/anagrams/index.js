@@ -10,66 +10,72 @@
 
 // ---------------------------------------------------------------------
 // -------------------------- SOLUTION 1 -------------------------------
-function anagrams(strA, strB) {
-  let aString = strA.replace(/[^\w]/g, '').toLowerCase();
-  let bString = strB.replace(/[^\w]/g, '').toLowerCase();
+// function anagrams(strA, strB) {
+//   let aString = strA.replace(/[^\w]/g, '').toLowerCase();
+//   let bString = strB.replace(/[^\w]/g, '').toLowerCase();
 
-  const strAChars = {};
-  const strBChars = {};
+//   const strAChars = {};
+//   const strBChars = {};
 
-  let stringMap = (str) => {
-    let mappedObject = {}
-    for (let char of str) {
-      mappedObject[char] = mappedObject[char] + 1 || 1 
-    }
-    return mappedObject;
-  }
+//   let stringMap = (str) => {
+//     let mappedObject = {}
+//     for (let char of str) {
+//       mappedObject[char] = mappedObject[char] + 1 || 1 
+//     }
+//     return mappedObject;
+//   }
 
-  if (aString.length === bString.length) {
+//   if (aString.length === bString.length) {
     
-    let strAChars = stringMap(aString);
-    let strBChars = stringMap(bString);
+//     let strAChars = stringMap(aString);
+//     let strBChars = stringMap(bString);
 
-    for (let char in strAChars) {
-      if (strAChars[char] !== strBChars[char]) {
-        return false;
-      } else {
-        return true;
-      }
-    }
+//     for (let char in strAChars) {
+//       if (strAChars[char] !== strBChars[char]) {
+//         return false;
+//       } else {
+//         return true;
+//       }
+//     }
 
-  } else {
-    return false;
-  }
-}
+//   } else {
+//     return false;
+//   }
+// }
   // NOTES
   // Create character maps out of aString and bString. The object is created by running a loop and adding a 1 to an existing character or creating a new instance of the character.
 
   // Created a helper function that creates a character map for a giving string
-// Introduction to regular expressions
+// Introduction to regular expressions (Helper function was created inside another function. It's better if you move the helper function outside like in solution 2)
 
 // ---------------------------------------------------------------------
 // ---------------------------- SOLUTION 2 --------------------------
-let anagrams = (strA, strB) => {
-  const strAMap = bulidCharMap(strA);
+function anagrams(strA, strB) {
+  const strAMap = buildCharMap(strA);
   const strBMap = buildCharMap(strB);
 
-  if (Object.keys(strAMap) !== Object.keys(strBMap)) {
-    return false
-  } else {
-    for (let char in strAMap) {
-      return strAMap[char] !== strBMap ? false : true ; 
-    }
+  if (Object.keys(strAMap).length !== Object.keys(strBMap).length) {
+    return false;
   }
 
-  let buildCharMap = (str) => {
-    let mapChars = {}
-    for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
-      mapChars[char] = mapChars[char] + 1 || 1
+  for (let char in strAMap) {
+    if (strAMap[char] !== strBMap[char]) {
+      return false;
     }
-    return mapChars;
   }
+  return true;
 }
+
+function buildCharMap(str) {
+  let mapChars = {}
+  for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+    mapChars[char] = mapChars[char] + 1 || 1
+  }
+  return mapChars;
+}
+
+// Cleaned up solution from the first one, more organized, and less but still readable code
+// 
 // ---------------------------------------------------------------------
 
 
