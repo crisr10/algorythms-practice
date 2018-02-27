@@ -46,11 +46,30 @@ function anagrams(strA, strB) {
   // Create character maps out of aString and bString. The object is created by running a loop and adding a 1 to an existing character or creating a new instance of the character.
 
   // Created a helper function that creates a character map for a giving string
-
-
-
 // Introduction to regular expressions
 
+// ---------------------------------------------------------------------
+// ---------------------------- SOLUTION 2 --------------------------
+let anagrams = (strA, strB) => {
+  const strAMap = bulidCharMap(strA);
+  const strBMap = buildCharMap(strB);
+
+  if (Object.keys(strAMap) !== Object.keys(strBMap)) {
+    return false
+  } else {
+    for (let char in strAMap) {
+      return strAMap[char] !== strBMap ? false : true ; 
+    }
+  }
+
+  let buildCharMap = (str) => {
+    let mapChars = {}
+    for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+      mapChars[char] = mapChars[char] + 1 || 1
+    }
+    return mapChars;
+  }
+}
 // ---------------------------------------------------------------------
 
 
