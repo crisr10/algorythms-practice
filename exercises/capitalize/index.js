@@ -7,25 +7,58 @@
 //   capitalize('a lazy fox') --> 'A Lazy Fox'
 //   capitalize('look, it is working!') --> 'Look, It Is Working!'
 
+
+// ---------------------------------------------------------------------
+// -------------------------- SOLUTION 1 -------------------------------
+
+// function capitalize(str) {
+//   const stringArray = str.split('');
+//   let capitalize = true;
+//   let upperCaseString = '';
+//   for (let char of stringArray) {
+//     if (capitalize) {
+//       upperCaseString += char.toUpperCase();
+//       capitalize = false;
+//     } else if (char === ' ') {
+//       capitalize = true;
+//       upperCaseString += char;
+//     } else {
+//       upperCaseString += char;
+//     }
+//   }
+//   return upperCaseString;
+// }
+
+// ---------------------------------------------------------------------
+// -------------------------- SOLUTION 2 -------------------------------
+// function capitalize(str) {
+//   const words = [];
+
+//   for (let word of str.split(' ')) {
+//     words.push(word[0].toUpperCase() + word.slice(1))
+//   };
+
+//   return words.join(' ');
+// };
+
+// ---------------------------------------------------------------------
+// -------------------------- SOLUTION 3 -------------------------------
 function capitalize(str) {
-  const stringArray = str.split('');
-  let capitalize = true;
-  let upperCaseString = '';
-  for (let char of stringArray) {
-    if (capitalize) {
-      upperCaseString += char.toUpperCase();
-      capitalize = false;
-    } else if (char === ' ') {
-      capitalize = true;
-      upperCaseString += char;
+  let result = str[0].toUpperCase();
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i - 1] === ' ') {
+      result += str[i].toUpperCase();
     } else {
-      upperCaseString += char;
+      result += str[i];
     }
   }
-  return upperCaseString;
+  return result;
 }
 
-console.log(capitalize('a short sentence'));
+// ---------------------------------------------------------------------
+// ---------------------------------------------------------------------
+
 
 module.exports = capitalize;
 
